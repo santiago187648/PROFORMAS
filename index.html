@@ -735,54 +735,80 @@ button.chip-toggle.active{background:rgba(123,47,255,0.25) !important;border-col
             <button class="btn-add" onclick="addCustom()">+ Agregar</button>
           </div>
           <div class="cus-list" id="cusList"></div>
-          <div class="sec-div">Detalles de producción</div>
-          <div class="prod-chips-area">
-            <div class="prod-row">
-              <span class="prod-label">👨‍🎬 Filmmakers</span>
+          <div class="sec-div" style="display:flex;align-items:center;justify-content:space-between;padding-right:4px">
+            <span>Detalles de producción</span>
+            <button class="btn-add" onclick="openAddCategoryModal()" style="font-size:10px;padding:4px 10px;border-color:rgba(123,47,255,0.4);color:var(--accent)">+ Nueva categoría</button>
+          </div>
+          <div class="prod-chips-area" id="prodChipsArea">
+            <div class="prod-row" data-cat-id="fm">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-fm" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('fm')">👨‍🎬 Filmmakers</span>
+                <button onclick="deleteProdCategory('fm')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-fm">
                 <button class="chip" onclick="setChip('fm',this,'1 filmmaker')">1</button>
                 <button class="chip" onclick="setChip('fm',this,'2 filmmakers')">2</button>
                 <button class="chip" onclick="setChip('fm',this,'3 filmmakers')">3</button>
                 <button class="chip" onclick="setChip('fm',this,'4+ filmmakers')">4+</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('fm','single')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
               </div>
             </div>
-            <div class="prod-row">
-              <span class="prod-label">🎥 Equipo</span>
+            <div class="prod-row" data-cat-id="eq">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-eq" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('eq')">🎥 Equipo</span>
+                <button onclick="deleteProdCategory('eq')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-eq">
                 <button class="chip" onclick="setChip('eq',this,'Cámara básica')">Básico</button>
                 <button class="chip" onclick="setChip('eq',this,'Cámara profesional + estabilizador')">Profesional</button>
                 <button class="chip" onclick="setChip('eq',this,'Cámara + drone + iluminación')">Full</button>
                 <button class="chip" onclick="setChip('eq',this,'Estudio completo')">Estudio</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('eq','single')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
               </div>
             </div>
-            <div class="prod-row">
-              <span class="prod-label">📅 Entrega</span>
+            <div class="prod-row" data-cat-id="en">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-en" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('en')">📅 Entrega</span>
+                <button onclick="deleteProdCategory('en')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-en">
                 <button class="chip" onclick="setChip('en',this,'Entrega en 3 días hábiles')">3 días</button>
                 <button class="chip" onclick="setChip('en',this,'Entrega en 5 días hábiles')">5 días</button>
                 <button class="chip" onclick="setChip('en',this,'Entrega en 7 días hábiles')">7 días</button>
                 <button class="chip" onclick="setChip('en',this,'Entrega en 15 días hábiles')">15 días</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('en','single')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
               </div>
             </div>
-            <div class="prod-row">
-              <span class="prod-label">🔄 Cambios</span>
+            <div class="prod-row" data-cat-id="cc">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-cc" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('cc')">🔄 Cambios</span>
+                <button onclick="deleteProdCategory('cc')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-cc">
                 <button class="chip" onclick="setChip('cc',this,'1 ronda de cambios incluida')">1 ronda</button>
                 <button class="chip" onclick="setChip('cc',this,'2 rondas de cambios incluidas')">2 rondas</button>
                 <button class="chip" onclick="setChip('cc',this,'3 rondas de cambios incluidas')">3 rondas</button>
                 <button class="chip" onclick="setChip('cc',this,'Sin límite de cambios')">Sin límite</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('cc','single')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
               </div>
             </div>
-            <div class="prod-row">
-              <span class="prod-label">📦 Formato</span>
+            <div class="prod-row" data-cat-id="fmt">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-fmt" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('fmt')">📦 Formato</span>
+                <button onclick="deleteProdCategory('fmt')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-fmt">
                 <button class="chip" onclick="setChip('fmt',this,'Entrega en MP4 HD 1080p')">1080p</button>
                 <button class="chip" onclick="setChip('fmt',this,'Entrega en MP4 4K')">4K</button>
                 <button class="chip" onclick="setChip('fmt',this,'Entrega en múltiples formatos (1080p, vertical, cuadrado)')">Multi-formato</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('fmt','single')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
               </div>
             </div>
-            <div class="prod-row">
-              <span class="prod-label">✅ Incluye</span>
+            <div class="prod-row" data-cat-id="inc">
+              <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+                <span class="prod-label" id="cat-label-inc" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('inc')">✅ Incluye</span>
+                <button onclick="deleteProdCategory('inc')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+              </div>
               <div class="prod-chips" id="chips-inc">
                 <button class="chip chip-toggle" onclick="toggleChip('inc',this,'edición básica')">Edición básica</button>
                 <button class="chip chip-toggle" onclick="toggleChip('inc',this,'corrección de color')">Color</button>
@@ -790,6 +816,43 @@ button.chip-toggle.active{background:rgba(123,47,255,0.25) !important;border-col
                 <button class="chip chip-toggle" onclick="toggleChip('inc',this,'subtítulos')">Subtítulos</button>
                 <button class="chip chip-toggle" onclick="toggleChip('inc',this,'voz en off')">Voz off</button>
                 <button class="chip chip-toggle" onclick="toggleChip('inc',this,'motion graphics')">Motion</button>
+                <button class="chip chip-add-opt" onclick="openAddOptionModal('inc','multi')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODAL: Agregar opción a categoría existente -->
+          <div id="addOptionModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:3000;align-items:center;justify-content:center;padding:20px">
+            <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;width:100%;max-width:380px">
+              <div style="font-family:var(--hv);font-size:16px;font-weight:900;color:var(--text);margin-bottom:6px" id="addOptModalTitle">Nueva opción</div>
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Se agregará como chip a la categoría seleccionada.</div>
+              <div class="field"><label>Texto del chip (etiqueta corta)</label><input id="newOptLabel" placeholder="Ej: 2 días"></div>
+              <div class="field"><label>Descripción larga (para el resumen)</label><input id="newOptDesc" placeholder="Ej: Entrega en 2 días hábiles"></div>
+              <div style="display:flex;gap:10px;margin-top:18px">
+                <button onclick="saveNewOption()" style="flex:1;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:var(--hv);font-weight:700;font-size:13px;cursor:pointer">Agregar</button>
+                <button onclick="closeAddOptionModal()" style="padding:11px 18px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:var(--hv);font-weight:700;font-size:13px;color:var(--text-muted);cursor:pointer">Cancelar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MODAL: Nueva categoría -->
+          <div id="addCategoryModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:3000;align-items:center;justify-content:center;padding:20px">
+            <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;width:100%;max-width:400px">
+              <div style="font-family:var(--hv);font-size:16px;font-weight:900;color:var(--text);margin-bottom:6px">Nueva categoría</div>
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:18px">Crea una nueva fila en Detalles de producción.</div>
+              <div class="field"><label>Nombre / emoji de la categoría</label><input id="newCatLabel" placeholder="Ej: 🎙️ Audio"></div>
+              <div class="field">
+                <label>Tipo de selección</label>
+                <select id="newCatType" style="width:100%;background:var(--input-bg);border:1.5px solid transparent;border-radius:var(--radius-sm);color:var(--text);font-family:var(--body);font-size:14px;padding:10px 13px;outline:none">
+                  <option value="single">Una opción (radio)</option>
+                  <option value="multi">Múltiples opciones (toggle)</option>
+                </select>
+              </div>
+              <div class="field"><label>Primera opción — etiqueta</label><input id="newCatOpt1Label" placeholder="Ej: Básico"></div>
+              <div class="field"><label>Primera opción — descripción larga</label><input id="newCatOpt1Desc" placeholder="Ej: Audio básico sin edición"></div>
+              <div style="display:flex;gap:10px;margin-top:18px">
+                <button onclick="saveNewCategory()" style="flex:1;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:var(--hv);font-weight:700;font-size:13px;cursor:pointer">Crear categoría</button>
+                <button onclick="closeAddCategoryModal()" style="padding:11px 18px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-family:var(--hv);font-weight:700;font-size:13px;color:var(--text-muted);cursor:pointer">Cancelar</button>
               </div>
             </div>
           </div>
@@ -1306,7 +1369,17 @@ function updateChipPreview() {
   if (chipValues.cc) parts.push('🔄 '+chipValues.cc);
   if (chipValues.fmt) parts.push('📦 '+chipValues.fmt);
   if (chipValues.inc.length) parts.push('✅ Incluye: '+chipValues.inc.join(', '));
-  
+  // custom categories
+  Object.keys(chipValues).forEach(k => {
+    if (!['fm','eq','en','cc','fmt','inc'].includes(k)) {
+      const catEl = document.getElementById('cat-label-'+k);
+      const catName = catEl ? catEl.textContent.trim() : k;
+      const val = chipValues[k];
+      if (Array.isArray(val) && val.length) parts.push(catName+': '+val.join(', '));
+      else if (val) parts.push(catName+': '+val);
+    }
+  });
+
   const prev = document.getElementById('chipPreview');
   const txt = document.getElementById('chipPreviewText');
   if (parts.length > 0) {
@@ -1317,6 +1390,160 @@ function updateChipPreview() {
   }
 }
 
+/* ============================================================
+   PRODUCCIÓN — EDICIÓN DINÁMICA DE CATEGORÍAS Y OPCIONES
+   ============================================================ */
+let _addOptCatId = null;
+let _addOptCatType = 'single';
+
+function openAddOptionModal(catId, catType) {
+  _addOptCatId = catId;
+  _addOptCatType = catType;
+  const catLabelEl = document.getElementById('cat-label-' + catId);
+  const catName = catLabelEl ? catLabelEl.textContent.trim() : catId;
+  document.getElementById('addOptModalTitle').textContent = 'Nueva opción — ' + catName;
+  document.getElementById('newOptLabel').value = '';
+  document.getElementById('newOptDesc').value = '';
+  document.getElementById('addOptionModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('newOptLabel').focus(), 100);
+}
+
+function closeAddOptionModal() {
+  document.getElementById('addOptionModal').style.display = 'none';
+}
+
+function saveNewOption() {
+  const label = document.getElementById('newOptLabel').value.trim();
+  const desc = document.getElementById('newOptDesc').value.trim();
+  if (!label) { toast('Escribe la etiqueta del chip'); return; }
+  const desc2 = desc || label;
+  const container = document.getElementById('chips-' + _addOptCatId);
+  if (!container) return;
+  const addBtn = container.querySelector('.chip-add-opt');
+  const btn = document.createElement('button');
+  const catType = _addOptCatType;
+  const catId = _addOptCatId;
+  if (catType === 'multi') {
+    btn.className = 'chip chip-toggle';
+    btn.textContent = label;
+    btn.onclick = function() { toggleChip(catId, btn, desc2); };
+  } else {
+    btn.className = 'chip';
+    btn.textContent = label;
+    btn.onclick = function() { setChip(catId, btn, desc2); };
+  }
+  // add delete on right-click
+  btn.title = 'Clic para seleccionar · Clic derecho para eliminar';
+  btn.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    if (confirm('¿Eliminar esta opción "' + label + '"?')) {
+      btn.remove();
+      // clear value if selected
+      if (catType === 'multi') {
+        if (Array.isArray(chipValues[catId])) {
+          chipValues[catId] = chipValues[catId].filter(v => v !== desc2);
+        }
+      } else {
+        if (chipValues[catId] === desc2) chipValues[catId] = '';
+      }
+      updateChipPreview();
+    }
+  });
+  container.insertBefore(btn, addBtn);
+  closeAddOptionModal();
+  toast('Opción "' + label + '" agregada');
+}
+
+function openAddCategoryModal() {
+  document.getElementById('newCatLabel').value = '';
+  document.getElementById('newCatOpt1Label').value = '';
+  document.getElementById('newCatOpt1Desc').value = '';
+  document.getElementById('newCatType').value = 'single';
+  document.getElementById('addCategoryModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('newCatLabel').focus(), 100);
+}
+
+function closeAddCategoryModal() {
+  document.getElementById('addCategoryModal').style.display = 'none';
+}
+
+function saveNewCategory() {
+  const label = document.getElementById('newCatLabel').value.trim();
+  const catType = document.getElementById('newCatType').value;
+  const opt1Label = document.getElementById('newCatOpt1Label').value.trim();
+  const opt1Desc = document.getElementById('newCatOpt1Desc').value.trim();
+  if (!label) { toast('Escribe el nombre de la categoría'); return; }
+  // generate unique id
+  const catId = 'cat_' + Date.now();
+  // init chipValues
+  chipValues[catId] = catType === 'multi' ? [] : '';
+  // build row
+  const area = document.getElementById('prodChipsArea');
+  const row = document.createElement('div');
+  row.className = 'prod-row';
+  row.setAttribute('data-cat-id', catId);
+  row.innerHTML = `
+    <div class="prod-label-wrap" style="display:flex;align-items:center;gap:4px;min-width:95px;flex-shrink:0">
+      <span class="prod-label" id="cat-label-${catId}" style="cursor:pointer" title="Clic para editar" onclick="startEditCategoryLabel('${catId}')">${label}</span>
+      <button onclick="deleteProdCategory('${catId}')" title="Eliminar categoría" style="background:none;border:none;color:#555;cursor:pointer;font-size:12px;padding:1px 3px;line-height:1;flex-shrink:0" onmouseover="this.style.color='#e04444'" onmouseout="this.style.color='#555'">×</button>
+    </div>
+    <div class="prod-chips" id="chips-${catId}">
+      <button class="chip chip-add-opt" onclick="openAddOptionModal('${catId}','${catType}')" title="Agregar opción" style="background:rgba(123,47,255,0.08);border-color:rgba(123,47,255,0.3);color:var(--accent);font-size:14px;padding:2px 8px">+</button>
+    </div>
+  `;
+  area.appendChild(row);
+  closeAddCategoryModal();
+  // add first option if provided
+  if (opt1Label) {
+    _addOptCatId = catId;
+    _addOptCatType = catType;
+    document.getElementById('newOptLabel').value = opt1Label;
+    document.getElementById('newOptDesc').value = opt1Desc || opt1Label;
+    saveNewOption();
+  } else {
+    toast('Categoría "' + label + '" creada');
+  }
+}
+
+function deleteProdCategory(catId) {
+  const row = document.querySelector('[data-cat-id="' + catId + '"]');
+  const labelEl = document.getElementById('cat-label-' + catId);
+  const catName = labelEl ? labelEl.textContent.trim() : catId;
+  if (!confirm('¿Eliminar la categoría "' + catName + '" y todas sus opciones?')) return;
+  if (row) row.remove();
+  delete chipValues[catId];
+  updateChipPreview();
+  toast('Categoría eliminada');
+}
+
+function startEditCategoryLabel(catId) {
+  const span = document.getElementById('cat-label-' + catId);
+  if (!span) return;
+  const current = span.textContent.trim();
+  const input = document.createElement('input');
+  input.value = current;
+  input.style.cssText = 'width:90px;background:var(--input-bg);border:1.5px solid var(--accent);border-radius:6px;color:var(--text);font-size:11px;padding:3px 6px;outline:none;font-family:var(--body)';
+  span.replaceWith(input);
+  input.focus();
+  input.select();
+  function finishEdit() {
+    const newLabel = input.value.trim() || current;
+    const newSpan = document.createElement('span');
+    newSpan.className = 'prod-label';
+    newSpan.id = 'cat-label-' + catId;
+    newSpan.style.cursor = 'pointer';
+    newSpan.title = 'Clic para editar';
+    newSpan.onclick = function() { startEditCategoryLabel(catId); };
+    newSpan.textContent = newLabel;
+    input.replaceWith(newSpan);
+  }
+  input.addEventListener('blur', finishEdit);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+    if (e.key === 'Escape') { input.value = current; input.blur(); }
+  });
+}
+
 function buildProdNote() {
   const parts = [];
   if (chipValues.fm) parts.push(chipValues.fm.charAt(0).toUpperCase()+chipValues.fm.slice(1));
@@ -1325,6 +1552,16 @@ function buildProdNote() {
   if (chipValues.cc) parts.push(chipValues.cc.charAt(0).toUpperCase()+chipValues.cc.slice(1));
   if (chipValues.fmt) parts.push(chipValues.fmt);
   if (chipValues.inc.length) parts.push('Incluye: '+chipValues.inc.join(', '));
+  // custom categories
+  Object.keys(chipValues).forEach(k => {
+    if (!['fm','eq','en','cc','fmt','inc'].includes(k)) {
+      const catEl = document.getElementById('cat-label-'+k);
+      const catName = catEl ? catEl.textContent.trim() : k;
+      const val = chipValues[k];
+      if (Array.isArray(val) && val.length) parts.push(catName+': '+val.join(', '));
+      else if (val) parts.push(catName+': '+val);
+    }
+  });
   return parts.join('. ')+(parts.length?'.':'');
 }
 
