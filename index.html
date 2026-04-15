@@ -223,6 +223,24 @@ body{font-family:var(--body);background:#0a0a0a;color:var(--white);min-height:10
   color:#ccc;cursor:pointer;font-size:14px;padding:2px 3px;transition:color 0.15s;z-index:2;
 }
 .svc-del:hover{color:#e04444}
+.svc-qty-row{
+  display:flex;align-items:center;gap:6px;margin-top:8px;
+  border-top:1px solid rgba(255,255,255,0.07);padding-top:7px;
+}
+.svc-qty-lbl{font-size:10px;color:var(--text-muted);font-family:var(--hv);font-weight:700;letter-spacing:1px;flex-shrink:0}
+.svc-qty-inp{
+  width:44px;text-align:center;background:#111;border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:6px;color:#fff;font-size:13px;font-weight:700;padding:3px 5px;
+  outline:none;font-family:var(--body);
+}
+.svc-qty-inp:focus{border-color:var(--accent)}
+.svc-qty-btns{display:flex;flex-direction:column;gap:1px}
+.svc-qty-btn{
+  background:rgba(255,255,255,0.07);border:none;color:#ccc;
+  font-size:9px;cursor:pointer;border-radius:4px;padding:1px 4px;line-height:1.2;
+  transition:all 0.12s;
+}
+.svc-qty-btn:hover{background:var(--accent);color:#fff}
 
 /* ── ADD SVC ── */
 .asvc-row{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
@@ -504,48 +522,71 @@ footer{
 }
 
 /* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .app{max-width:100%;padding:2rem 1.2rem 4rem}
+}
 @media(max-width:1024px){
   .app{grid-template-columns:1fr}
   .preview-col{position:static}
 }
 @media(max-width:860px){
-  .app{grid-template-columns:1fr}
+  .app{grid-template-columns:1fr;padding:1.5rem 1rem 3rem;gap:1.5rem}
   .preview-col{position:static}
-  .hero h1{font-size:42px}
+  .hero h1{font-size:clamp(32px,6vw,52px)}
+  .hero{padding:3.5rem 1.5rem 2.5rem}
   .svc-grid{grid-template-columns:1fr 1fr}
   .row2{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr 1fr}
   .quote-card{border-radius:12px}
-  .q-top{flex-direction:column;gap:10px;align-items:flex-start}
-  .q-top-right{align-items:flex-start;text-align:left}
-  .q-meta{grid-template-columns:1fr;gap:10px}
+  .q-top{flex-direction:column;gap:10px;align-items:flex-start;padding:18px 20px 12px}
+  .q-top-right{text-align:left}
+  .q-meta{grid-template-columns:1fr;gap:8px;padding:14px 20px}
   .q-meta > div:last-child{text-align:left}
-  .q-meta > div:last-child .qmi{align-items:flex-start}
   .q-thead{display:none}
-  .q-row{flex-direction:column;gap:4px;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .q-row{display:flex;flex-direction:column;gap:3px;padding:10px 20px;border-bottom:1px solid rgba(0,0,0,0.08)}
   .q-rp-unit{display:none}
-  .q-rp{font-weight:700;font-size:14px}
-  .q-actions{flex-direction:column;gap:8px}
+  .q-rp{font-weight:700;font-size:14px;text-align:left}
+  .q-totals{padding:14px 20px 18px}
+  .q-actions{flex-direction:column;gap:8px;padding:14px 20px}
   .btn-pdf,.btn-wa{width:100%;justify-content:center}
+  .nav{padding:0 1.2rem}
+  .bancos-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .svc-grid{grid-template-columns:1fr}
-  .hero h1{font-size:34px}
-  .hero{padding:3rem 1.2rem 2rem}
-  .tabs .tab{font-size:9px;padding:7px 8px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:clamp(26px,8vw,38px)}
+  .hero{padding:2.5rem 1rem 2rem}
+  .hero-sub{font-size:14px}
+  .tabs{gap:2px}
+  .tabs .tab{font-size:9px;padding:7px 9px;letter-spacing:1px}
   .stats-row{grid-template-columns:1fr 1fr}
   .q-items .q-thead{display:none}
-  .color-picker-fab{bottom:1.2rem;right:1.2rem}
-  .q-top{padding:14px 16px}
+  .color-picker-fab{bottom:1rem;right:1rem}
+  .q-top{padding:14px 16px 10px}
   .q-meta{padding:12px 16px}
   .q-items{padding:0 12px}
-  .q-totals{padding:12px 16px}
-  .q-actions{padding:14px 16px}
+  .q-totals{padding:12px 16px 16px}
+  .q-actions{padding:12px 16px 16px}
+  .q-tot-val{font-size:26px}
+  .panel-body{padding:14px}
+  .prod-chips-area{padding:10px}
+  .prod-label{min-width:70px;font-size:10px}
+  .asvc-row{flex-wrap:wrap}
+  .asvc-row .asp,.asvc-row .asu{width:100%;flex:none}
+  footer{flex-direction:column;align-items:flex-start;gap:6px;padding:1rem 1.2rem}
+  .modal-box{padding:20px;border-radius:14px}
 }
-@media(max-width:400px){
-  .hero h1{font-size:28px}
-  .tabs .tab{font-size:8px;padding:6px 6px}
+@media(max-width:420px){
+  .svc-grid{grid-template-columns:1fr}
+  .hero h1{font-size:24px}
+  .tabs .tab{font-size:8px;padding:6px 7px}
   .stats-row{grid-template-columns:1fr}
+  .nav{height:56px}
+  .logo-img-h{height:22px}
+  .q-invoice-title{font-size:22px}
+  .q-tot-val{font-size:22px}
+  .bc-cuenta{font-size:18px}
+  .chip{font-size:10px;padding:4px 9px}
 }
 
 /* ── CHIPS DE PRODUCCIÓN ── */
@@ -974,10 +1015,21 @@ function initGrid() {
       <button class="svc-del" onclick="delSvc(event,${i})">×</button>
       <div class="svc-n">${s.n}</div>
       <div class="svc-p">$${s.p.toLocaleString()} / ${s.u}</div>
+      <div class="svc-qty-row" onclick="event.stopPropagation()">
+        <span class="svc-qty-lbl">Cant.:</span>
+        <input class="svc-qty-inp" id="qty${i}" type="number" min="1" max="99" value="1" onchange="clampQty(this)">
+        <div class="svc-qty-btns">
+          <button class="svc-qty-btn" onclick="changeQty(${i},1)">▲</button>
+          <button class="svc-qty-btn" onclick="changeQty(${i},-1)">▼</button>
+        </div>
+      </div>
     </div>`
   ).join('');
   sel.forEach(i => { const el=document.getElementById('s'+i); if(el) el.classList.add('on'); });
 }
+function clampQty(inp){let v=parseInt(inp.value)||1;if(v<1)v=1;if(v>99)v=99;inp.value=v;}
+function changeQty(i,delta){const inp=document.getElementById('qty'+i);if(!inp)return;let v=(parseInt(inp.value)||1)+delta;if(v<1)v=1;if(v>99)v=99;inp.value=v;}
+function getQty(i){const inp=document.getElementById('qty'+i);return inp?Math.max(1,parseInt(inp.value)||1):1;}
 function tog(i) { i=Number(i); sel.has(i)?sel.delete(i):sel.add(i); document.getElementById('s'+i).classList.toggle('on',sel.has(i)); }
 function delSvc(e,i) {
   e.stopPropagation();
@@ -1031,23 +1083,32 @@ function generate() {
   const evFmt=evD?new Date(evD+'T12:00:00').toLocaleDateString('es-EC',{day:'2-digit',month:'long',year:'numeric'}):'—';
   const qDate=new Date().toLocaleDateString('es-EC',{day:'2-digit',month:'long',year:'numeric'});
   const qNum=cfg.prefix+'-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*9000+1000));
-  let items=[]; sel.forEach(i=>items.push({n:SVCS[i].n,p:SVCS[i].p,u:SVCS[i].u})); custom.forEach(c=>items.push({n:c.n,p:c.p,u:c.u||'servicio'}));
+  let items=[]; sel.forEach(i=>{const qty=getQty(i);items.push({n:SVCS[i].n,p:SVCS[i].p,u:SVCS[i].u,qty});});custom.forEach(c=>items.push({n:c.n,p:c.p,u:c.u||'servicio',qty:1}));
   if(!items.length){toast('Selecciona al menos un servicio');return;}
-  const sub=items.reduce((a,b)=>a+b.p,0);
+  const sub=items.reduce((a,b)=>a+(b.p*b.qty),0);
   const dAmt=discMode==='pct' ? sub*(discVal/100) : Math.min(discVal, sub);
   const total=sub-dAmt;
   const discLabel=discMode==='pct' ? discVal+'%' : fmt(discVal);
   const logoHtml=`<img src="${cfg.logo}" class="q-logo-img" alt="Logo">`;
-  const waMsg='Hola '+cn+'\n\nAdjunto la cotización *'+qNum+'* de *'+cfg.company+'* para el proyecto *'+proj+'*.\n\n'+items.map(it=>'• '+it.n+': '+fmt(it.p)).join('\n')+(dAmt>0?'\n• Descuento ('+discLabel+'): -'+fmt(dAmt):'')+('\n\n*TOTAL: '+fmt(total)+'*\n\n')+(note?'Nota: '+note+'\n\n':'')+cfg.email+' · '+cfg.social;
+  const waMsg='Hola '+cn+'\n\nAdjunto la cotización *'+qNum+'* de *'+cfg.company+'* para el proyecto *'+proj+'*.\n\n'+items.map(it=>(it.qty>1?it.qty+'× ':'')+it.n+': '+fmt(it.p*it.qty)).join('\n')+(dAmt>0?'\n• Descuento ('+discLabel+'): -'+fmt(dAmt):'')+('\n\n*TOTAL: '+fmt(total)+'*\n\n')+(note?'Nota: '+note+'\n\n':'')+cfg.email+' · '+cfg.social;
   // Build rows with 3 columns: Descripción | Precio unit. | Total
-  const rows=items.map(it=>`<div class="q-row"><div><div class="q-rn">${it.n}</div><div class="q-ru">1 ${it.u}</div></div><div class="q-rp-unit">${fmt(it.p)}</div><div class="q-rp">${fmt(it.p)}</div></div>`).join('');
+  const rows=items.map(it=>`<div class="q-row"><div><div class="q-rn">${it.n}</div><div class="q-ru">${it.qty>1?it.qty+' × $'+it.p.toLocaleString('es-EC',{minimumFractionDigits:2,maximumFractionDigits:2})+' c/u':'1 '+it.u}</div></div><div class="q-rp-unit">${fmt(it.p)}</div><div class="q-rp">${fmt(it.p*it.qty)}</div></div>`).join('');
   // Status from saved record (default pendiente)
   const statusLabel={'pendiente':'⏳ Pendiente de pago','enviada':'📤 Enviada','aceptada':'✅ Aceptada','pagado':'✅ Pagado','rechazada':'❌ Rechazada'};
   const curStatus='pendiente';
   const statusClass=curStatus;
   // Enhanced WhatsApp message with status
-  const waMsgFull='Hola '+cn+',\n\n📋 *PROFORMA '+qNum+'*\n'+'━'.repeat(28)+'\n\n'+'🏢 Empresa: '+cfg.company+'\n'+'📁 Proyecto: '+proj+'\n'+'📅 Fecha evento: '+evFmt+'\n\n'+'*SERVICIOS:*\n'+items.map(it=>'  • '+it.n+': '+fmt(it.p)).join('\n')+(dAmt>0?'\n\n💰 Descuento ('+discLabel+'): -'+fmt(dAmt):'')+('\n\n'+'━'.repeat(28)+'\n💵 *TOTAL: '+fmt(total)+'*\n'+'━'.repeat(28))+'\n\n🔔 *Estado: PENDIENTE DE PAGO*'+(note?'\n\n📝 Nota: '+note:'')+'\n\n'+cfg.email+' | '+cfg.social;
+  const waMsgFull='Hola '+cn+',\n\n📋 *PROFORMA '+qNum+'*\n'+'━'.repeat(28)+'\n\n'+'🏢 Empresa: '+cfg.company+'\n'+'📁 Proyecto: '+proj+'\n'+'📅 Fecha evento: '+evFmt+'\n\n'+'*SERVICIOS:*\n'+items.map(it=>'  • '+(it.qty>1?it.qty+'× ':'')+it.n+': '+fmt(it.p*it.qty)).join('\n')+(dAmt>0?'\n\n💰 Descuento ('+discLabel+'): -'+fmt(dAmt):'')+('\n\n'+'━'.repeat(28)+'\n💵 *TOTAL: '+fmt(total)+'*\n'+'━'.repeat(28))+'\n\n🔔 *Estado: PENDIENTE DE PAGO*'+(note?'\n\n📝 Nota: '+note:'')+'\n\n'+cfg.email+' | '+cfg.social;
   window._lastWaMsg = waMsgFull;
+  // Build chip summary with emojis for proforma
+  const chipParts=[];
+  if(chipValues.fm) chipParts.push('👨‍🎬 '+chipValues.fm);
+  if(chipValues.eq) chipParts.push('🎥 '+chipValues.eq);
+  if(chipValues.en) chipParts.push('📅 '+chipValues.en);
+  if(chipValues.cc) chipParts.push('🔄 '+chipValues.cc);
+  if(chipValues.fmt) chipParts.push('📦 '+chipValues.fmt);
+  if(chipValues.inc&&chipValues.inc.length) chipParts.push('✅ Incluye: '+chipValues.inc.join(', '));
+  const chipNoteHtml = chipParts.length ? `<div class="q-note" style="line-height:1.9">${chipParts.map(p=>'<div>'+p+'</div>').join('')}${noteUser?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,0.08)">📝 '+noteUser+'</div>':''}</div>` : (noteUser?`<div class="q-note">📝 <strong>Nota:</strong> ${noteUser}</div>`:'');
   document.getElementById('qCard').innerHTML=`
     <div class="q-top">
       <div>${logoHtml}</div>
@@ -1086,14 +1147,13 @@ function generate() {
         <span class="q-status-badge ${statusClass}" id="qStatusBadge">${statusLabel[curStatus]}</span>
       </div>
     </div>
-    ${note?`<div class="q-note">📝 <strong>Nota:</strong> ${note}</div>`:''}
-    <div class="q-thankyou">♥ ¡Gracias por confiar en nosotros!</div>
+    ${chipNoteHtml}
     <div class="q-actions">
       <button class="btn-pdf" onclick="window.print()">📄 Exportar PDF</button>
       <button class="btn-wa" onclick="openWA()">💬 WhatsApp</button>
     </div>
     <div class="q-footer-txt">${cfg.company} · ${cfg.email} · ${cfg.social}</div>`;
-  clients.unshift({id:Date.now(),qNum,cn,ce,ct,cc,cid,proj,total,disc,items:items.map(i=>i.n).join(', '),date:new Date().toISOString(),status:'pendiente'});
+  clients.unshift({id:Date.now(),qNum,cn,ce,ct,cc,cid,proj,total,disc,items:items.map(i=>(i.qty>1?i.qty+'× ':'')+i.n).join(', '),date:new Date().toISOString(),status:'pendiente'});
   localStorage.setItem('bh_clients',JSON.stringify(clients));
   toast('Cotización generada y guardada');
   document.getElementById('qCard').scrollIntoView({behavior:'smooth',block:'start'});
